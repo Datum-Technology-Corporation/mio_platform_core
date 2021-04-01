@@ -14,7 +14,7 @@ Usage:
   # Generators & Refactoring & Documentation Generator -- Cool mio exclusives!
   mio new      [<generator_name>]
   mio refactor <target>  (disconnect|connect|rename|delete)
-  mio docgen [target_ip]  [-a | --all]
+  mio docgen [target_ip]  [-at | --all_targets]  [-af | --all_formats]  --html --pdf --tex --rtf --man
   
   # Misc. EDA
   mio lint # tbd
@@ -24,39 +24,6 @@ Usage:
   mio (-h | --help)
   mio --version
 
-Options:
-  -h --help     Show this screen.
-  --version     Show version.
-
-"""
-
-
-"""'Moore.io IP Manager CLI'.
-
-Usage:
-  mpm init
-  mpm config
-  
-  mpm search
-  mpm install
-  mpm uninstall
-  mpm list
-  mpm prune
-  mpm outdated
-  mpm update
-  
-  mpm login
-  mpm logout
-  
-  mpm publish
-  mpm unpublish
-  mpm deprecate
-  mpm shrinkwrap
-  
-  mio doctor
-  mio (-h | --help)
-  mio --version
-  
 Options:
   -h --help     Show this screen.
   --version     Show version.
