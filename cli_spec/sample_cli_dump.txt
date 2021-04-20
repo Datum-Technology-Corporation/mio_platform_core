@@ -1,0 +1,88 @@
+#########################################################################################
+#########################################################################################
+# This is the printout for a fictitious session with a yet-to-be implemented Moore.io CLI
+#########################################################################################
+#########################################################################################
+
+
+#############################################
+# Create new project from a built-in template
+#############################################
+% cd ~/projects
+% mkdir my_proj
+% cd my_proj
+% mio new
+
+  Select from the following generators:
+  
+    [1] - Moore.io Official Base UVM Generator
+	[2] - Moore.io Official Base RTL Generator
+	[3] - Synopsys (Unofficial) VKit Generator
+	
+% 1
+
+  Hello, welcome to the Official Moore.io Base UVM Generator.
+  Please make a selection from the menu:
+  
+    [1] - Project
+	[2] - Sub-System
+	[3] - Agent
+	[4] - Library
+	...
+
+% 1
+
+  Please answer the following questions:
+    ...
+% ...
+
+  New Project 'my_proj' created!
+% ls
+   bin   doc   dft   dv   lint   rtl   sim   syn   tools   README.md
+
+
+
+
+########################################################
+# Create a sub-system within the project called dp_slice
+########################################################
+% mio new  --generator mio-official-base-uvm  --template-name sub-system
+  What is the name of the sub-system?
+% dp_slice
+  ...
+% ...
+  New Sub-System 'dp_slice' created!
+% mpm list
+  my_proj@?.?.? ~/projects/my_proj
+    └── dp_slice@?.?.?          <rtl-ip>
+    └── uvme_dp_slice_ss@?.?.?  <dv-ip>
+    └── uvmt_dp_slice_ss@?.?.?  <dv-ip>
+  
+  mpm@1.0.0 /tools/mio/bin
+    └─┬ **mio-base-built-in-suite**
+	  └── uvm@^         <dv-ip>
+	  └── uvml_hrtbt@^  <dv-ip>
+	  └── uvml_logs@^   <dv-ip>
+% mpm install uvml_io@^
+  IP uvml_io@1.0.0 installed
+
+
+
+########################################################
+# Simulate a test bench
+########################################################
+% cd ./sim
+% ls
+   out   results
+% mio cmp  uvmt_dp_slice_ss --quiet
+% mio elab uvmt_dp_slice_ss --quiet
+% mio sim  uvmt_dp_slice_ss --test sanity  --seed 42 --quiet
+  SIMULATION FAILED: 3 ERRORS , 2 WARNINGS
+% ls results
+   uvmt_dp_slice_ss_sanity_test
+% mio view --latest
+  ...
+  <starts default editor with test results log(s)>
+
+
+
